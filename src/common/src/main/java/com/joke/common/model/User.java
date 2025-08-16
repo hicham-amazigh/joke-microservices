@@ -2,6 +2,7 @@ package com.joke.common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.micronaut.core.annotation.Introspected;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -9,22 +10,20 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Introspected
-public class Quote {
+public class User {
     private Long id;
 
     @NotBlank
-    @Size(min = 10, max = 1000)
-    private String text;
+    @Size(min = 2, max = 50)
+    private String username;
 
-    @Size(max = 100)
-    private String author;
+    @NotBlank
+    @Email
+    private String email;
 
-    @Size(max = 50)
-    private String category;
-
-    private Long userId;
-
-    private int likes;
+    @NotBlank
+    @Size(min = 2, max = 100)
+    private String displayName;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
@@ -32,43 +31,28 @@ public class Quote {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime updatedAt;
 
-    public Quote() {}
+    public User() {}
 
-    public Quote(String text) {
-        this.text = text;
-        this.likes = 0;
+    public User(String username, String email, String displayName) {
+        this.username = username;
+        this.email = email;
+        this.displayName = displayName;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-    }
-
-    public Quote(String text, String author) {
-        this(text);
-        this.author = author;
-    }
-
-    public Quote(String text, String author, String category) {
-        this(text, author);
-        this.category = category;
     }
 
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getText() { return text; }
-    public void setText(String text) { this.text = text; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public String getAuthor() { return author; }
-    public void setAuthor(String author) { this.author = author; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
-
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
-
-    public int getLikes() { return likes; }
-    public void setLikes(int likes) { this.likes = likes; }
+    public String getDisplayName() { return displayName; }
+    public void setDisplayName(String displayName) { this.displayName = displayName; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
@@ -80,17 +64,17 @@ public class Quote {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Quote quote = (Quote) o;
-        return Objects.equals(id, quote.id);
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, username);
     }
 
     @Override
     public String toString() {
-        return "Quote{id=" + id + ", text='" + text + "', author='" + author + "'}";
+        return "User{id=" + id + ", username='" + username + "', displayName='" + displayName + "'}";
     }
 }
