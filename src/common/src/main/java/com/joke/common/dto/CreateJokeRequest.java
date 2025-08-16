@@ -17,7 +17,7 @@ public class CreateJokeRequest {
     @Size(max = 50)
     private String category;
 
-    private Long userId;
+    private String userId;
 
     public CreateJokeRequest() {}
 
@@ -35,6 +35,6 @@ public class CreateJokeRequest {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
 }

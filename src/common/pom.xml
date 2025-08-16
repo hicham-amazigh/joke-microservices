@@ -33,6 +33,24 @@
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-jackson-core</artifactId>
         </dependency>
+
+        <!-- Micronaut Data MongoDB -->
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- MongoDB Driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-reactivestreams</artifactId>
+        </dependency>
+
+        <!-- Micronaut MongoDB -->
+        <dependency>
+            <groupId>io.micronaut.mongodb</groupId>
+            <artifactId>micronaut-mongo-reactive</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

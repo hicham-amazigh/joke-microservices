@@ -2,6 +2,9 @@ package com.joke.common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.micronaut.core.annotation.Introspected;
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,8 +13,11 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Introspected
+@MappedEntity("users")
 public class User {
-    private Long id;
+    @Id
+    @GeneratedValue
+    private String id;
 
     @NotBlank
     @Size(min = 2, max = 50)
@@ -42,8 +48,8 @@ public class User {
     }
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
