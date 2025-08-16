@@ -2,6 +2,9 @@ package com.joke.common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.micronaut.core.annotation.Introspected;
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -9,8 +12,11 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Introspected
+@MappedEntity("jokes")
 public class Joke {
-    private Long id;
+    @Id
+    @GeneratedValue
+    private String id;
 
     @NotBlank
     @Size(min = 10, max = 2000)
@@ -23,7 +29,7 @@ public class Joke {
     @Size(max = 50)
     private String category;
 
-    private Long userId;
+    private String userId;
 
     private int likes;
 
@@ -52,8 +58,8 @@ public class Joke {
     }
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getSetup() { return setup; }
     public void setSetup(String setup) { this.setup = setup; }
@@ -64,8 +70,8 @@ public class Joke {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
 
     public int getLikes() { return likes; }
     public void setLikes(int likes) { this.likes = likes; }
