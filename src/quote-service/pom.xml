@@ -41,6 +41,26 @@
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- MongoDB dependencies -->
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-reactivestreams</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.mongodb</groupId>
+            <artifactId>micronaut-mongo-reactive</artifactId>
+        </dependency>
+
+        <!-- Annotation processors -->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-inject-java</artifactId>
@@ -51,14 +71,10 @@
             <artifactId>micronaut-validation-processor</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>io.micronaut.data</groupId>
-            <artifactId>micronaut-data-mongodb</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.mongodb</groupId>
-            <artifactId>micronaut-mongo-reactive</artifactId>
+            <artifactId>micronaut-data-document-processor</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -67,6 +83,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>io.micronaut</groupId>
+                            <artifactId>micronaut-inject-java</artifactId>
+                            <version>4.5.1</version>
+                        </path>
+                        <path>
+                            <groupId>io.micronaut.validation</groupId>
+                            <artifactId>micronaut-validation-processor</artifactId>
+                            <version>4.6.1</version>
+                        </path>
+                        <path>
+                            <groupId>io.micronaut.data</groupId>
+                            <artifactId>micronaut-data-document-processor</artifactId>
+                            <version>4.8.3</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-Amicronaut.processing.incremental=true</arg>
+                        <arg>-Amicronaut.processing.annotations=com.joke.*</arg>
+                        <arg>-Amicronaut.processing.group=com.joke</arg>
+                        <arg>-Amicronaut.processing.module=quote-service</arg>
+                    </compilerArgs>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>io.micronaut.maven</groupId>

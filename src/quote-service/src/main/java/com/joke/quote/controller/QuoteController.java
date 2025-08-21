@@ -7,6 +7,8 @@ import com.joke.common.model.Quote;
 import com.joke.quote.service.QuoteService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
 import io.micronaut.validation.Validated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @Controller("/api/quotes")
 @Validated
+@ExecuteOn(TaskExecutors.IO)
 public class QuoteController {
     private final QuoteService quoteService;
 
