@@ -2,16 +2,18 @@ package com.joke.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.micronaut.core.annotation.Introspected;
+import io.micronaut.serde.annotation.Serdeable;
 
 import java.time.LocalDateTime;
 
+@Serdeable
 @Introspected
 public class ApiResponse<T> {
     private boolean success;
     private String message;
     private T data;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
 
     public ApiResponse() {

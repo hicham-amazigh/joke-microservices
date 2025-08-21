@@ -6,6 +6,8 @@ import com.joke.common.model.User;
 import com.joke.joke.service.UserService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
 import io.micronaut.validation.Validated;
 import jakarta.validation.Valid;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 @Controller("/api/users")
 @Validated
+@ExecuteOn(TaskExecutors.IO)
 public class UserController {
     private final UserService userService;
 
