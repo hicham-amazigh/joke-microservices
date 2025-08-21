@@ -35,10 +35,10 @@ public class Joke {
 
     private boolean isApproved;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime updatedAt;
 
     public Joke() {}
@@ -76,8 +76,8 @@ public class Joke {
     public int getLikes() { return likes; }
     public void setLikes(int likes) { this.likes = likes; }
 
-    public boolean isApproved() { return isApproved; }
-    public void setApproved(boolean approved) { isApproved = approved; }
+    public boolean getIsApproved() { return isApproved; }
+    public void setIsApproved(boolean approved) { isApproved = approved; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

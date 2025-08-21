@@ -61,7 +61,7 @@ public class JokeServiceImpl implements JokeService {
         Joke joke = new Joke(request.getSetup(), request.getPunchline(), request.getCategory());
         joke.setUserId(request.getUserId());
         // New jokes need approval by default
-        joke.setApproved(false);
+        joke.setIsApproved(false);
         return jokeRepository.save(joke);
     }
 
@@ -125,7 +125,7 @@ public class JokeServiceImpl implements JokeService {
         Joke joke = jokeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Joke: " + id));
 
-        joke.setApproved(true);
+        joke.setIsApproved(true);
         joke.setUpdatedAt(LocalDateTime.now());
 
         return jokeRepository.save(joke); // save() handles both create and update
@@ -136,7 +136,7 @@ public class JokeServiceImpl implements JokeService {
         Joke joke = jokeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Joke: " + id));
 
-        joke.setApproved(false);
+        joke.setIsApproved(false);
         joke.setUpdatedAt(LocalDateTime.now());
 
         return jokeRepository.save(joke); // save() handles both create and update
